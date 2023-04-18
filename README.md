@@ -15,6 +15,6 @@ This project contains a cli tool to analyze and display statistical information 
 - washington.csv
 - new_york_city.csv
 
-### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+### External dependencies
+- Pandas library, found at: https://pandas.pydata.org/docs/index.html
 
