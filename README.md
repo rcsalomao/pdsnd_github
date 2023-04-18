@@ -7,7 +7,7 @@ This repository project was created on April 17, 2023.
 Programming for Data Science with Python. Bikeshare Project.
 
 ### Description
-Describe what your project is about and what it does
+This project contains a cli tool to analyze and display statistical information pertaining bike share data from Chicago, Washington and New York.
 
 ### Files used
 Include the files used
