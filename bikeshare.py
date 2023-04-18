@@ -13,6 +13,16 @@ DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sun
 
 
 def get_input(input_label, help_label, input_options):
+    """
+    Helper function used inside 'get_filters' function.
+
+    Args:
+        (str) input_label: Message to be shown to the user for the filter input.
+        (str) help_label: Message sent to the user in case of wrong input.
+        (dict) input_options: Dictionary of input options to be chosen.
+    Returns:
+        (str) inpt: input option according to the user input.
+    """
     while True:
         inpt = input(input_label).lower()
         if inpt == "help":
