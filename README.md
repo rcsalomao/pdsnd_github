@@ -10,7 +10,10 @@ Programming for Data Science with Python. Bikeshare Project.
 This project contains a cli tool to analyze and display statistical information pertaining bike share data from Chicago, Washington and New York.
 
 ### Files used
-Include the files used
+- bikeshare.py
+- chicago.csv
+- washington.csv
+- new_york_city.csv
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
