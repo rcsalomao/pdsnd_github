@@ -1,5 +1,6 @@
 import time
 import pandas as pd
+
 # import numpy as np
 
 CITY_DATA = {
@@ -12,6 +13,16 @@ DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sun
 
 
 def get_input(input_label, help_label, input_options):
+    """
+    Helper function used inside 'get_filters' function.
+
+    Args:
+        (str) input_label: Message to be shown to the user for the filter input.
+        (str) help_label: Message sent to the user in case of wrong input.
+        (dict) input_options: Dictionary of input options to be chosen.
+    Returns:
+        (str) inpt: input option according to the user input.
+    """
     while True:
         inpt = input(input_label).lower()
         if inpt == "help":
@@ -67,6 +78,8 @@ def load_data(city, month, day):
         (str) city: Name of the city to analyze
         (str) month: Name of the month to filter by, or "all" to apply no month filter
         (str) day: Name of the day of week to filter by, or "all" to apply no day filter
+    Returns:
+        df: Pandas DataFrame containing city data filtered by month and day
     """
 
     # Load data file into a dataframe
@@ -99,6 +112,11 @@ def show_raw_data(df):
     Function responsible to show raw data 5 rows at a time.
     Keeps asking for confirmation to show increments of 5 rows until user enters [no] to stop.
     Is executed after loading the dataset and before computing the summary statitics.
+
+    Args:
+        df: Pandas DataFrame containing city data filtered by month and day
+    Returns:
+        nothing
     """
 
     print("Would you like to see the raw data?")
@@ -125,7 +143,14 @@ def show_raw_data(df):
 
 
 def time_stats(df):
-    """ Displays statistics on the most frequent times of travel. """
+    """
+    Displays statistics on the most frequent times of travel.
+
+    Args:
+        df: Pandas DataFrame containing city data filtered by month and day
+    Returns:
+        nothing
+    """
 
     print("\nCalculating The Most Frequent Times of Travel...\n")
     start_time = time.time()
@@ -145,29 +170,53 @@ def time_stats(df):
 
 
 def station_stats(df):
-    """ Displays statistics on the most popular stations and trip. """
+    """
+    Displays statistics on the most popular stations and trip.
+
+    Args:
+        df: Pandas DataFrame containing city data filtered by month and day
+    Returns:
+        nothing
+    """
 
     print("\nCalculating The Most Popular Stations and Trip...\n")
     start_time = time.time()
 
     # Display most commonly used start station
-    print("The most commonly used start station is: {}.".format(df["Start Station"].mode()[0]))
+    print(
+        "The most commonly used start station is: {}.".format(
+            df["Start Station"].mode()[0]
+        )
+    )
 
     # Display most commonly used end station
-    print("The most commonly used end station is: {}.".format(df["End Station"].mode()[0]))
+    print(
+        "The most commonly used end station is: {}.".format(df["End Station"].mode()[0])
+    )
 
     # Display most frequent combination of start station and end station trip
     top_comb_start_station, top_comb_end_station = (
         df[["Start Station", "End Station"]].value_counts().index[0]
     )
-    print("The most frequent combination of start station and end station trip is: {} to {}.".format(top_comb_start_station, top_comb_end_station))
+    print(
+        "The most frequent combination of start station and end station trip is: {} to {}.".format(
+            top_comb_start_station, top_comb_end_station
+        )
+    )
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print("-" * 40)
 
 
 def trip_duration_stats(df):
-    """ Displays statistics on the total and average trip duration. """
+    """
+    Displays statistics on the total and average trip duration.
+
+    Args:
+        df: Pandas DataFrame containing city data filtered by month and day
+    Returns:
+        nothing
+    """
 
     print("\nCalculating Trip Duration...\n")
     start_time = time.time()
@@ -202,7 +251,14 @@ def trip_duration_stats(df):
 
 
 def user_stats(df):
-    """ Displays statistics on bikeshare users. """
+    """
+    Displays statistics on bikeshare users.
+
+    Args:
+        df: Pandas DataFrame containing city data filtered by month and day
+    Returns:
+        nothing
+    """
 
     print("\nCalculating User Stats...\n")
     start_time = time.time()
@@ -223,9 +279,19 @@ def user_stats(df):
 
     # Display earliest, most recent, and most common year of birth
     if "Birth Year" in df.columns:
-        print("The earliest user birth year is: {}.".format(int(df["Birth Year"].min())))
-        print("The most recent user birth year is: {}.".format(int(df["Birth Year"].max())))
-        print("The most common user birth year is: {}.".format(int(df["Birth Year"].mode())))
+        print(
+            "The earliest user birth year is: {}.".format(int(df["Birth Year"].min()))
+        )
+        print(
+            "The most recent user birth year is: {}.".format(
+                int(df["Birth Year"].max())
+            )
+        )
+        print(
+            "The most common user birth year is: {}.".format(
+                int(df["Birth Year"].mode())
+            )
+        )
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print("-" * 40)
